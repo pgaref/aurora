@@ -1,0 +1,118 @@
+{
+	"description":"Constrained Services Workload",
+	"trace_duration" : 600,
+	"num_jobs" : 2000,
+	"cluster":"CISL",
+	"rand_seed" : 2,
+	"services" : [
+		{
+			"service_name": "HBase",
+			"fallback_queue_name": "default",
+			"description": "HBase Service",
+			"service_weight": 0.5,
+			"num_tasks_avg": 11,
+			"num_tasks_stddev": 4,
+
+			"service_components": [
+				{
+					"component_name": "HBASE_MASTER",
+					"component_tags": ["hbase", "master", "dynamicTag1"],
+					"component_priority": 1,
+					"mtasks_avg": 1,
+					"mtasks_stddev": 0,
+					"map_max_memory_avg": 1024,
+					"map_max_memory_stddev": 0.01,
+					"bytes_per_map_record": 512,
+					"shuffle_avg" : 1048576000,
+					"shuffle_stddev" : 174762666,
+					"bytes_per_shuffle_record" : 512,
+					"in_avg": 1048576000,
+					"in_stddev": 174762666,
+					"out_avg": 1048576000,
+					"out_stddev": 104857600
+				},
+				{
+					"component_name": "HBASE_SECONDARY",
+					"component_tags": ["hbase", "secondary", "dynamicTag2"],
+					"component_priority": 2,
+					"mtasks_avg": 1,
+					"mtasks_stddev": 0,
+					"map_max_memory_avg": 1024,
+					"map_max_memory_stddev": 0.01,
+					"bytes_per_map_record": 512,
+					"shuffle_avg" : 1048576000,
+					"shuffle_stddev" : 174762666,
+					"bytes_per_shuffle_record" : 512,
+					"in_avg": 1048576000,
+					"in_stddev": 174762666,
+					"out_avg": 1048576000,
+					"out_stddev": 104857600
+				},
+				{
+					"component_name": "HBASE_REGIONSERVER",
+					"component_tags": ["hbase", "regionserver", "dynamicTag4"],
+					"component_priority": 3,
+					"mtasks_avg": 1,
+					"mtasks_stddev": 0,
+					"map_max_memory_avg": 1024,
+					"map_max_memory_stddev": 0.01,
+					"bytes_per_map_record": 512,
+					"shuffle_avg" : 1048576000,
+					"shuffle_stddev" : 174762666,
+					"bytes_per_shuffle_record" : 512,
+					"in_avg": 1048576000,
+					"in_stddev": 174762666,
+					"out_avg": 1048576000,
+					"out_stddev": 104857600
+				},
+				{
+					"component_name": "HBASE_REGIONSERVER",
+					"component_tags": ["hbase", "regionserver", "dynamicTag5"],
+					"component_priority": 4,
+					"mtasks_avg": 1,
+					"mtasks_stddev": 0,
+					"map_max_memory_avg": 1024,
+					"map_max_memory_stddev": 0.01,
+					"bytes_per_map_record": 512,
+					"shuffle_avg" : 1048576000,
+					"shuffle_stddev" : 174762666,
+					"bytes_per_shuffle_record" : 512,
+					"in_avg": 1048576000,
+					"in_stddev": 174762666,
+					"out_avg": 1048576000,
+					"out_stddev": 104857600
+				},
+				{
+					"component_name": "HBASE_THRIFT",
+					"component_tags": ["hbase", "thrift", "dynamicTag3"],
+					"component_priority": 5,
+					"mtasks_avg": 1,
+					"mtasks_stddev": 0,
+					"map_max_memory_avg": 1024,
+					"map_max_memory_stddev": 0.01,
+					"bytes_per_map_record": 512,
+					"shuffle_avg" : 1048576000,
+					"shuffle_stddev" : 174762666,
+					"bytes_per_shuffle_record" : 512,
+					"in_avg": 1048576000,
+					"in_stddev": 174762666,
+					"out_avg": 1048576000,
+					"out_stddev": 104857600
+				}
+			],
+			"placement_constraints" : [
+				{ "source" : "master", "target": "thrift", "type": "AFFINITY", "scope": "NODE"},
+				{ "source" : "master", "target": "secondary", "type": "ANTI_AFFINITY", "scope": "NODE"},
+				{ "source" : "regionserver", "target": "regionserver", "type": "ANTI_AFFINITY", "scope": "NODE"}
+			],
+			"time_constraints" : [
+				{ "time" : 100, "tasks" : 8  },
+				{ "time" : 200, "tasks" : 8  },
+				{ "time" : 300, "tasks" : 10 },
+				{ "time" : 400, "tasks" : 12 },
+				{ "time" : 500, "tasks" : 8  }
+			]
+		}
+	]
+
+}

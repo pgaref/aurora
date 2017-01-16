@@ -39,6 +39,7 @@ allprojects {
 
   repositories {
     mavenCentral()
+    mavenLocal()
   }
 
   compileJava {
@@ -110,7 +111,7 @@ For more details, please see https://issues.apache.org/jira/browse/AURORA-1169
       // block - this only affects strategy.
       // See http://forums.gradle.org/gradle/topics/shouldnt-resolutionstrategy-affect-depending-projects-transitive-dependencies
       resolutionStrategy {
-        failOnVersionConflict()
+//        failOnVersionConflict()
         force "org.apache.httpcomponents:httpclient:${httpclientRev}"
         force "org.apache.httpcomponents:httpcore:${httpcoreRev}"
         force "com.fasterxml.jackson.core:jackson-annotations:${jacksonRev}"
@@ -126,6 +127,12 @@ For more details, please see https://issues.apache.org/jira/browse/AURORA-1169
         force "org.mybatis:mybatis:${mybatisRev}"
       }
     }
+  }
+}
+
+configurations.all {
+  resolutionStrategy {
+    force 'com.google.inject:guice:3.0'
   }
 }
 
@@ -384,6 +391,12 @@ dependencies {
   compile 'org.mybatis:mybatis-migrations:3.2.0'
   compile 'org.quartz-scheduler:quartz:2.2.2'
   compile "uno.perk:forward:1.0.0"
+  compile group: 'org.apache.hadoop', name: 'hadoop-common', version: '3.0.0-alpha2-SNAPSHOT'
+  compile group: 'org.apache.hadoop', name: 'hadoop-yarn-api', version: '3.0.0-alpha2-SNAPSHOT'
+  compile group: 'org.apache.hadoop', name: 'hadoop-yarn-common', version: '3.0.0-alpha2-SNAPSHOT'
+  compile group: 'org.apache.hadoop', name: 'hadoop-gridmix', version: '3.0.0-alpha2-SNAPSHOT'
+  compile group: 'org.apache.hadoop', name: 'hadoop-rumen', version: '3.0.0-alpha2-SNAPSHOT'
+//  compile group: 'org.apache.hadoop', name: 'hadoop-yarn-server-resourcemanager', version: '3.0.0-alpha2-SNAPSHOT'
 
   testCompile "com.sun.jersey:jersey-client:${jerseyRev}"
   testCompile "junit:junit:${junitRev}"

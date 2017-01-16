@@ -37,7 +37,7 @@ import static org.apache.aurora.scheduler.resources.ResourceType.RAM_MB;
 /**
  * Offer factory.
  */
-final class Offers {
+public final class Offers {
   private Offers() {
     // Utility class.
   }
@@ -48,7 +48,7 @@ final class Offers {
    * @param offerManager {@link OfferManager} to save into.
    * @param offers Offers to save.
    */
-  static void addOffers(OfferManager offerManager, Iterable<HostOffer> offers) {
+  public static void addOffers(OfferManager offerManager, Iterable<HostOffer> offers) {
     for (HostOffer offer : offers) {
       offerManager.addOffer(offer);
     }
@@ -57,7 +57,7 @@ final class Offers {
   /**
    * Builds offers for the specified configuration.
    */
-  static final class Builder {
+  public static final class Builder {
     private static final String OFFER_ID_FORMAT = "offer-%s";
     private static final String FRAMEWORK_ID = "framework_id";
 
@@ -92,7 +92,7 @@ final class Offers {
      * @param hostAttributes Host attributes to initialize offers from.
      * @return Set of offers.
      */
-    Set<HostOffer> build(Set<IHostAttributes> hostAttributes) {
+    public Set<HostOffer> build(Set<IHostAttributes> hostAttributes) {
       ImmutableSet.Builder<HostOffer> offers = ImmutableSet.builder();
       int id = 0;
       for (IHostAttributes attributes : hostAttributes) {

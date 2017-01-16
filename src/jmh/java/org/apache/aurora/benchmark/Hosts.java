@@ -25,7 +25,7 @@ import org.apache.aurora.scheduler.storage.entities.IHostAttributes;
 /**
  * Host attribute builder.
  */
-final class Hosts {
+public final class Hosts {
   private Hosts() {
     // Utility class.
   }
@@ -33,18 +33,18 @@ final class Hosts {
   /**
    * Builds host attributes for the specified configuration.
    */
-  static final class Builder {
+  public static final class Builder {
     private static final String SLAVE_ID_FORMAT = "slave-%s";
     private static final String HOST_NAME_FORMAT = "host-%s";
     private static final String RACK_NAME_FORMAT = "rack-%s";
     private int hostsPerRack = 1;
 
-    Builder setNumHostsPerRack(int newHostsPerRack) {
+    public Builder setNumHostsPerRack(int newHostsPerRack) {
       hostsPerRack = newHostsPerRack;
       return this;
     }
 
-    Set<IHostAttributes> build(int count) {
+    public Set<IHostAttributes> build(int count) {
       ImmutableSet.Builder<IHostAttributes> attributes = ImmutableSet.builder();
       int rackIndex = 0;
       for (int i = 0; i < count; i++) {

@@ -1,0 +1,15 @@
+{
+  "description": "Service Planning Simulation",
+  "numRuns": 1,
+  "seed": 2,
+  "logFile": "src/test/resources/visualization/data/test1_",
+  "nodes": 500,
+  "nodeRamInGB": 4,
+  "nodeVCores": 4,
+  "minAlloc": 1,
+  "maxAlloc": 8,
+  "serviceJobs": 100,
+  "syntheticJobs": 0,
+  "synthJsonConf": "src/jmh/java/org/apache/aurora/benchmark/resources/swimJobs.json",
+  "serviceJsonConf": "src/jmh/java/org/apache/aurora/benchmark/resources/serviceJobs.json"
+}

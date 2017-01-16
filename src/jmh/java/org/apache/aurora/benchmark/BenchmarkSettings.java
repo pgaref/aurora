@@ -23,7 +23,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Benchmark test settings.
  */
-final class BenchmarkSettings {
+public final class BenchmarkSettings {
   private final Set<IHostAttributes> hostAttributes;
   private final double clusterUtilization;
   private final boolean allVictimsEligibleForPreemption;
@@ -47,7 +47,7 @@ final class BenchmarkSettings {
    *
    * @return Cluster utilization (default: 0.9).
    */
-  double getClusterUtilization() {
+  public double getClusterUtilization() {
     return clusterUtilization;
   }
 
@@ -56,7 +56,7 @@ final class BenchmarkSettings {
    *
    * @return Victim preemption eligibility (default: false).
    */
-  boolean areAllVictimsEligibleForPreemption() {
+  public boolean areAllVictimsEligibleForPreemption() {
     return allVictimsEligibleForPreemption;
   }
 
@@ -65,7 +65,7 @@ final class BenchmarkSettings {
    *
    * @return Set of {@link IHostAttributes}.
    */
-  Set<IHostAttributes> getHostAttributes() {
+  public Set<IHostAttributes> getHostAttributes() {
     return hostAttributes;
   }
 
@@ -74,11 +74,11 @@ final class BenchmarkSettings {
    *
    * @return Task to run a benchmark for.
    */
-  Set<IScheduledTask> getTasks() {
+  public Set<IScheduledTask> getTasks() {
     return tasks;
   }
 
-  static class Builder {
+  public static class Builder {
     private double clusterUtilization = 0.9;
     private boolean allVictimsEligibleForPreemption;
     private Set<IHostAttributes> hostAttributes;
@@ -94,17 +94,17 @@ final class BenchmarkSettings {
       return this;
     }
 
-    Builder setHostAttributes(Set<IHostAttributes> newHostAttributes) {
+    public Builder setHostAttributes(Set<IHostAttributes> newHostAttributes) {
       hostAttributes = newHostAttributes;
       return this;
     }
 
-    Builder setTasks(Set<IScheduledTask> newTasks) {
+    public Builder setTasks(Set<IScheduledTask> newTasks) {
       tasks = newTasks;
       return this;
     }
 
-    BenchmarkSettings build() {
+    public BenchmarkSettings build() {
       return new BenchmarkSettings(
           clusterUtilization,
           allVictimsEligibleForPreemption,

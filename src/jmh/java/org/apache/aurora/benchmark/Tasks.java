@@ -40,7 +40,7 @@ import static org.apache.aurora.gen.Resource.ramMb;
 /**
  * Task factory.
  */
-final class Tasks {
+public final class Tasks {
 
   private Tasks() {
     // Utility class.
@@ -49,7 +49,7 @@ final class Tasks {
   /**
    * Builds tasks for the specified configuration.
    */
-  static final class Builder {
+  public static final class Builder {
     private JobKey jobKey = new JobKey("jmh", "dev", "benchmark");
     private int uuidStart = 0;
     private boolean isProduction = false;
@@ -59,7 +59,7 @@ final class Tasks {
     private ScheduleStatus scheduleStatus = ScheduleStatus.PENDING;
     private ImmutableSet.Builder<Constraint> constraints = ImmutableSet.builder();
 
-    Builder setRole(String newRole) {
+    public Builder setRole(String newRole) {
       jobKey.setRole(newRole);
       return this;
     }
@@ -99,7 +99,7 @@ final class Tasks {
       return this;
     }
 
-    Builder setProduction(boolean newProduction) {
+    public Builder setProduction(boolean newProduction) {
       isProduction = newProduction;
       return this;
     }
@@ -114,7 +114,7 @@ final class Tasks {
       return this;
     }
 
-    Builder addLimitConstraint(String name, int limit) {
+    public Builder addLimitConstraint(String name, int limit) {
       constraints.add(new Constraint()
           .setName(name)
           .setConstraint(TaskConstraint.limit(new LimitConstraint()
@@ -129,7 +129,7 @@ final class Tasks {
      * @param count Number of tasks to build.
      * @return Set of tasks.
      */
-    Set<IScheduledTask> build(int count) {
+    public Set<IScheduledTask> build(int count) {
       ImmutableSet.Builder<IScheduledTask> tasks = ImmutableSet.builder();
 
       for (int i = 0; i < count; i++) {
