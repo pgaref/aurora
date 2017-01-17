@@ -61,8 +61,8 @@ public final class Offers {
     private static final String OFFER_ID_FORMAT = "offer-%s";
     private static final String FRAMEWORK_ID = "framework_id";
 
-    private double cpu = 8.0;
-    private Amount<Long, Data> ram = Amount.of(16L, Data.GB);
+    private double cpu = 4.0;
+    private Amount<Long, Data> ram = Amount.of(4L, Data.GB);
     private Amount<Long, Data> disk = Amount.of(256L, Data.GB);
     private int ports = 1024;
 
