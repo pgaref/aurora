@@ -47,7 +47,7 @@ public final class Hosts {
     public Set<IHostAttributes> build(int count) {
       ImmutableSet.Builder<IHostAttributes> attributes = ImmutableSet.builder();
       int rackIndex = 0;
-      for (int i = 0; i < count; i++) {
+      for (int i = 1; i < count+1; i++) {
         attributes.add(IHostAttributes.build(new HostAttributes()
             .setHost(String.format(HOST_NAME_FORMAT, i))
             .setSlaveId(String.format(SLAVE_ID_FORMAT, i))
